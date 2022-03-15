@@ -31,8 +31,6 @@ let tarr = formatDate(today)
 let sifir = 0
 let tarrr = document.querySelector('#tarih')
 tarrr.setAttribute("value",tarr)
-let ida = []
-let idon = []
 //////////////tarihi value////////////////
 
 
@@ -55,22 +53,20 @@ fetch("https://modayakamoz.com/admin/get_bayi_satis.php?tarih=" + formatDate(tod
       nameof.push(element.komisyoncu_adi)
       s = element.toplamSatis.match(/(\w+)-/g);
       para.push(parseInt(s[0]))
-      ida.push(element.id)
 
     
       ////Gösterilecek bayi kadar al///////
       for(var i = 0; i <= 29; i++) {
         nameofon[i] = nameof [i]
         paraon[i] = para [i]
-       idon[i] = ida[i]
 
-  
     }     
     
         let ekle = document.createElement("li");
-        let id = document.createElement("li")
-        id.innerHTML = element.id;
-        ekle.innerHTML = "<span style=\"color:green\">" + element.komisyoncu_adi + "</span>"+ " " +"<span style=\"color:red\">" + element.toplamSatis + "</span>"  + " " + "<span style=\"color:green\">" + element.hakedis + "</span>";
+
+ 
+        ekle.innerHTML = "<span style=color:black>" + element.komisyoncu_adi  + "</span>"+ " " +"<span style=\"color:red\">" + element.toplamSatis + "</span>"  + " " + "<span style=\"color:green\">" + element.hakedis + "</span>"+" " + "<input><button id ="+element.id +">FIRR</button></input>"
+        ekle.setAttribute("id",element.id)
         liste.append(ekle)
     })
  })
@@ -125,7 +121,7 @@ function refresh(){
         labels: nameofon,
         datasets: [{
             label: 'Bayiler',
-            data: paraon,idon,
+            data: paraon,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
